@@ -1,0 +1,32 @@
+# Template file for 'cl-trivial-backtrace'
+pkgname=cl-trivial-backtrace
+version=1.1.0
+revision=1
+checkdepends="sbcl"
+short_desc="Portable simple API to work with backtraces in Common Lisp"
+maintainer="Mihail Ivanchev <contact@ivanchev.net>"
+license="MIT"
+homepage="https://trivial-backtrace.common-lisp.dev/"
+distfiles="http://common-lisp.net/project/trivial-backtrace/trivial-backtrace.tar.gz"
+checksum=a59c77665bb65a280b7b7f35c753a92486e4bbeaee6f0771b5297333288ef6e9
+
+_LIBRARY_DIR=usr/share/common-lisp/source/trivial-backtrace
+
+# do_check() {
+# 	# FIXME: Currently requires lift
+# 	sbcl --non-interactive \
+# 	     --eval '(require "asdf")' \
+# 	     --eval "(push #p\"${wrksrc}/\" asdf:*central-registry*)" \
+# 	     --eval '(asdf:load-system "trivla-backtrace-test")' \
+# 	     --eval '(unless (asdf:test-system "trivial-backtrace") \
+# 	               (uiop:quit 1))'
+# }
+
+do_install() {
+	vmkdir $_LIBRARY_DIR
+	vcopy dev $_LIBRARY_DIR
+	vcopy test $_LIBRARY_DIR
+	vcopy trivial-backtrace.asd $_LIBRARY_DIR
+	vcopy trivial-backtrace-test.asd $_LIBRARY_DIR
+	vlicense COPYING
+}
