@@ -1,0 +1,18 @@
+# Template file for 'cl-asdf-flv'
+pkgname=cl-asdf-flv
+version=2.2
+revision=1
+short_desc="ASDF extension to provide support for file-local variables"
+maintainer="Mihail Ivanchev <contact@ivanchev.net>"
+license="FSFAP"
+homepage="https://github.com/didierverna/asdf-flv"
+distfiles="https://github.com/didierverna/asdf-flv/archive/refs/tags/version-${version}.tar.gz"
+checksum=a93f05daa40226bf42f088f0cac4d52a3f9fb59f83daa187b91b8f534f8a1ead
+
+_LIBRARY_DIR=usr/share/common-lisp/source/asdf-flv
+
+do_install() {
+	vmkdir $_LIBRARY_DIR
+	vcopy *.lisp $_LIBRARY_DIR
+	vcopy net.didierverna.asdf-flv.asd $_LIBRARY_DIR
+}
