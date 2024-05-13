@@ -1,0 +1,33 @@
+# Template file for 'cl-fiveam'
+pkgname=cl-fiveam
+version=1.4.3
+revision=1
+depends="cl-alexandria cl-trivial-backtrace cl-asdf-flv"
+checkdepends="sbcl ${depends}"
+short_desc="Common Lisp regression testing framework"
+maintainer="Mihail Ivanchev <contact@ivanchev.net>"
+license="BSD-3-Clause"
+homepage="https://github.com/lispci/fiveam"
+distfiles="https://github.com/lispci/fiveam/archive/refs/tags/v${version}.tar.gz"
+checksum=05f9ad652deb2946638388a1b50f1dd1a248e379aaeb7bea0480d5c388a3213e
+
+_LIBRARY_DIR=usr/share/common-lisp/source/fiveam
+
+do_check() {
+	sbcl --non-interactive \
+	     --eval '(require "asdf")' \
+	     --eval "(push #p\"${wrksrc}/\" asdf:*central-registry*)" \
+	     --eval '(asdf:load-system "fiveam/test")' \
+	     --eval '(unless (5am:run! :it.bese.fiveam) \
+		      (uiop:quit 1))'
+}
+
+do_install() {
+	vmkdir $_LIBRARY_DIR
+	vmkdir $_LIBRARY_DIR/src
+	vcopy src/*.lisp $_LIBRARY_DIR/src
+	vcopy t $_LIBRARY_DIR
+	vcopy fiveam.asd $_LIBRARY_DIR
+	vcopy version.sexp $_LIBRARY_DIR
+	vlicense COPYING
+}
