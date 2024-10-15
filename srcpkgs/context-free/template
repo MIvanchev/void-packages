@@ -1,0 +1,17 @@
+# Template file for 'context-free'
+pkgname=context-free
+version=3.4.1
+revision=1
+build_style=gnu-makefile
+make_use_env=yes
+hostmakedepends="flex bison"
+makedepends="icu-devel libpng-devel libatomic-devel"
+checkdepends="ffmpeg"
+short_desc="Generates images from written instructions called a grammar"
+maintainer="Mihail Ivanchev <contact@ivanchev.net>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/MtnViewJohn/context-free"
+distfiles="https://github.com/MtnViewJohn/context-free/archive/Version${version}.tar.gz"
+checksum=c9433fac623b4f7f7875636f7cefd6beca1e4314ef0717b490440c1b7cd40765
+
+export prefix=/usr
