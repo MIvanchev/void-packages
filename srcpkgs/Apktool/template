@@ -1,7 +1,7 @@
 # Template file for 'Apktool'
 pkgname=Apktool
 version=2.11.1
-revision=1
+revision=2
 hostmakedepends="openjdk11 gradle"
 depends="virtual?java-runtime"
 short_desc="Tool for reverse engineering Android apk files"
